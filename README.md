@@ -1,5 +1,5 @@
 # login-service
-Code Test for Change Healthcare
+Code Test
 
 Spring project for the code test.
 
