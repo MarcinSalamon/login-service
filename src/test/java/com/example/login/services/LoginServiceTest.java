@@ -84,6 +84,18 @@ public class LoginServiceTest {
 	}
 	
 	@Test
+	public void checkForSpecialCharactersHasSpecial() {
+		String password = "pass1!";
+		assertTrue(loginService.checkForSpecialCharacters(password));
+	}
+	
+	@Test
+	public void checkForSpecialCharactersNoSpecial() {
+		String password = "pass1";
+		assertFalse(loginService.checkForSpecialCharacters(password));
+	}
+	
+	@Test
 	public void checkForSequencesOfThreeWithBreak() {
 		String password = "pasbpas";
 		assertFalse(loginService.checkForSequences(password));

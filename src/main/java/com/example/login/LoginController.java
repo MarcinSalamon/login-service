@@ -21,7 +21,6 @@ public class LoginController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<Object> login(@RequestBody LoginInfo info) {
-//		LoginInfo info = new LoginInfo(creds.get("username").asText(), creds.get("password").asText());
 		try {
 			loginService.validateUser(info);
 		} catch(LoginException e) {

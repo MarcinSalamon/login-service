@@ -21,6 +21,9 @@ public class LoginService {
 		if(!checkLength(info.getPassword())) {
 			throw new LoginException("Password must be between 5 and 12 characters long.", new Throwable());
 		}
+		if(checkForSpecialCharacters(info.getPassword())) {
+			throw new LoginException("Password must not contain special characters.", new Throwable());
+		}
 		if(checkForSequences(info.getPassword())) {
 			throw new LoginException("Password must not contain repeating sequences.", new Throwable());
 		}
@@ -45,9 +48,16 @@ public class LoginService {
 		return false;
 	}
 	
+	public boolean checkForSpecialCharacters(String password) {
+		String regex = "[^\\w\\s]";
+		Pattern p = Pattern.compile(regex);
+		return p.matcher(password).find();
+	}
+	
 	public boolean checkForSequences(String password) {
 		String regex = "(...+)\\1";
 		Pattern p = Pattern.compile(regex);
 		return p.matcher(password).find();
 	}
+	
 }
